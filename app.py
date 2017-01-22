@@ -6,6 +6,7 @@ from db import DB
 from pyflock import FlockClient, Message
         
 urls = (
+    '/hello', 'Hello',
     '/events', 'EventHandler'
 )
 app = web.application(urls, globals())
@@ -45,6 +46,13 @@ class EventHandler:
             self.handle_command(event)
         elif event_name == 'chat.receiveMessage':
             self.handle_bot_message(event['message'])
+
+
+
+class Hello:
+
+    def GET(self):
+        return 'OK'
 
 if __name__ == "__main__":
     app.run()
