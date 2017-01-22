@@ -41,6 +41,7 @@ class EventHandler:
         event_name = event['name']
 
         if event_name == 'app.install':
+            print 'Received app install event'
             self.handle_install(event)
             return 'OK'
         elif event_name == 'client.slashCommand':
