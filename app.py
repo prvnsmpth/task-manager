@@ -1,6 +1,5 @@
 import web
 import json
-import sqlite3
 from db import DB
 from bot import Bot
 
@@ -18,8 +17,13 @@ bot_token = 'ce1e2893-8306-4574-8f29-522aa3d20439'
 app_id = 'a643fd2c-326e-462f-879a-f49ddc019f2b'
 flock_client = FlockClient(token=bot_token, app_id=app_id)
 
+TEST = False
+
 # Database client
-db = DB('db.sqlite3')
+if TEST:
+    db = DB(dbname='psampat1', host='localhost', user='psampat1', password='')
+else:
+    db = DB()
 
 bot = Bot(bot_token, app_id, db)
 
@@ -46,7 +50,6 @@ class EventHandler:
 
 
 class Hello:
-
     def GET(self):
         return 'OK'
 
