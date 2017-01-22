@@ -5,7 +5,9 @@ def init():
     cur = conn.cursor()
 
     cur.execute('''
-        CREATE TABLE users (user_id TEXT PRIMARY KEY)
+        CREATE TABLE users (
+            user_id TEXT PRIMARY KEY,
+            token TEXT)
     ''')
 
     cur.execute('''

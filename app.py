@@ -13,24 +13,20 @@ app = web.application(urls, globals())
 wsgiapp = app.wsgifunc()
 
 # Flock client
-bot_token = '3eaf05be-7d37-4474-bdb5-a1b6f307ed73'
-app_id = 'ffc13fc5-ed85-4c04-b52c-d23fda856a3b'
+bot_token = 'ce1e2893-8306-4574-8f29-522aa3d20439'
+app_id = 'a643fd2c-326e-462f-879a-f49ddc019f2b'
 flock_client = FlockClient(token=bot_token, app_id=app_id)
 
 # Database client
 db = DB('db.sqlite3')
 
+bot = Bot(bot_token, app_id, db)
+
 class EventHandler:
 
     def handle_install(self, event):
-        user_id = event['userId']
-        db.create_user(user_id)
+        db.create_user(event)
     
-    def handle_bot_message(self, msg):
-        sender_id = msg['from']
-        response_msg = Message(to=sender_id, text=msg['text'])
-        res = flock_client.send_chat(response_msg)
-
     def handle_command(self, event):
         pass
 
@@ -45,8 +41,7 @@ class EventHandler:
         elif event_name == 'client.slashCommand':
             self.handle_command(event)
         elif event_name == 'chat.receiveMessage':
-            self.handle_bot_message(event['message'])
-
+            bot.handle(event['message'])
 
 
 class Hello:
