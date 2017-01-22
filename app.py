@@ -17,7 +17,7 @@ class EventHandler:
 
     def POST(self):
         data = web.input()
-        print 'User ID', data.userId
+        print 'User ID', data
         return 'OK'
 
 if __name__ == "__main__":
