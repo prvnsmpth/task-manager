@@ -2,6 +2,7 @@ import web
 import json
 import sqlite3
 from db import DB
+from bot import Bot
 
 from pyflock import FlockClient, Message
         
