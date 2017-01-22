@@ -1,5 +1,7 @@
 import web
 import json
+
+from pyflock import FlockClient, Message
         
 urls = (
     '/events', 'EventHandler'
@@ -7,13 +9,25 @@ urls = (
 app = web.application(urls, globals())
 wsgiapp = app.wsgifunc()
 
+bot_token = '3eaf05be-7d37-4474-bdb5-a1b6f307ed73'
+app_id = 'ffc13fc5-ed85-4c04-b52c-d23fda856a3b'
+flock_client = FlockClient(token=bot_token, app_id=app_id)
+
+user_id = None
+
 class EventHandler:
 
     def handle_install(self, event):
-        pass
+        user_id = event['userId']
     
     def handle_command(self, event):
-        return event['text']
+        pass
+
+    def handle_bot_message(self, msg):
+        sender_id = msg['from']
+        response_msg = Message(to=sender_id, text='You are testing... my patience')
+        res = flock_client.send_chat(response_msg)
+        print res
 
     def POST(self):
         event = json.loads(web.data())
@@ -25,11 +39,14 @@ class EventHandler:
             return 'OK'
         elif event_name == 'client.slashCommand':
             web.header('Content-Type', 'application/json')
-            response = self.handle_command(event)
+            self.handle_command(event)
             json_response = {
-                'text': response
+                'text': 'It works!'
             }
             return json.dumps(json_response)
+        elif event_name == 'chat.receiveMessage':
+            print 'Received message:', event['message']['text']
+            self.handle_bot_message(event['message'])
 
 if __name__ == "__main__":
     app.run()
