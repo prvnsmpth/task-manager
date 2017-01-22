@@ -35,6 +35,6 @@ class Bot:
             flock_client = FlockClient(token=user_token, app_id=self.app_id)
             groups = flock_client.get_groups()
 
-            self.send_simple_msg(CONF_RESP)
+            self.send_simple_msg(sender_id, CONF_RESP)
 
             self.notify_group_members(groups[0]['id'])
