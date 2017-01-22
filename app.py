@@ -24,8 +24,12 @@ class EventHandler:
             self.handle_install(event)
             return 'OK'
         elif event_name == 'client.slashCommand':
+            web.header('Content-Type', 'application/json')
             response = self.handle_command(event)
-            return 'You said: {0}'.format(response)
+            json_response = {
+                'text': response
+            }
+            return json.dumps(json_response)
 
 if __name__ == "__main__":
     app.run()
