@@ -4,17 +4,18 @@ from psycopg2 import IntegrityError
 DB_HOST = 'ec2-50-17-212-238.compute-1.amazonaws.com'
 DB_PORT = 5432
 DB_USER = 'evhanutrqdruut'
-DB_PASS = 'KlqKZcPIg5dVTFJbtgX90fM_69'
+DB_PASSWORD = 'KlqKZcPIg5dVTFJbtgX90fM_69'
 DB_NAME = 'dd70pjvtfenth'
 
 class DB:
 
-    def __init__(self, dbname, host, port, user, password):
-        self.dbname = dbname or DB_NAME
-        self.host = host or DB_HOST
-        self.port = port or DB_PORT
-        self.user = user or DB_USER
-        self.password = password or DB_PASSWORD
+    def __init__(self, dbname=DB_NAME, host=DB_HOST, port=DB_PORT, user=DB_USER,
+            password=DB_PASSWORD):
+        self.dbname = dbname
+        self.host = host
+        self.port = port
+        self.user = user
+        self.password = password
 
     def create_user(self, user_info):
         conn = psycopg2.connect("dbname='{0}' host='{1}' port='{2}' user='{3}' password='{4}'"
