@@ -1,4 +1,4 @@
-from pyflock import FlockClient
+from pyflock import FlockClient, Message
 
 CONF_RESP = "OK! I'll reach out to your team members and get back to you soon!"
 
