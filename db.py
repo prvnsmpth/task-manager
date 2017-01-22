@@ -23,5 +23,5 @@ class DB:
             cur = self.conn.cursor()
             cur.execute("SELECT token FROM users WHERE user_id = ?", (user_id,))
             entry = cur.fetchone()
-            return entry['token'] if entry else None
+            return entry[0] if entry else None
 
