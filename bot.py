@@ -14,7 +14,7 @@ class Bot:
         self.db = db
         self.bot_token = bot_token
 
-    def send_simple_msg(self, msg):
+    def send_simple_msg(self, sender_id, msg):
         flock_client = FlockClient(token=self.bot_token, app_id=self.app_id)
         flock_client.send_chat(Message(to=sender_id, text=msg))
 
@@ -22,7 +22,7 @@ class Bot:
         flock_client = FlockClient(token=self.bot_token, app_id=self.app_id)
 
         for member in flock_client.get_group_members():
-            self.send_simple_msg(STATUS_Q)
+            self.send_simple_msg(member['id'], STATUS_Q)
 
     def handle(self, msg):
         sender_id = msg['from']
