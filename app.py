@@ -25,9 +25,8 @@ class EventHandler:
 
     def handle_bot_message(self, msg):
         sender_id = msg['from']
-        response_msg = Message(to=sender_id, text='You are testing... my patience')
+        response_msg = Message(to=sender_id, text=msg['text'])
         res = flock_client.send_chat(response_msg)
-        print res
 
     def POST(self):
         event = json.loads(web.data())
