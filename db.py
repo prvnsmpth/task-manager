@@ -19,7 +19,7 @@ class DB:
 
     def create_user(self, user_info):
         conn = psycopg2.connect("dbname='{0}' host='{1}' port='{2}' user='{3}' password='{4}'"
-                .format(self.dbname, self.host, self.user, self.password))
+                .format(self.dbname, self.host, self.port, self.user, self.password))
 
         with conn:
             try:
