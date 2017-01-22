@@ -1,5 +1,6 @@
 import web
 import json
+import sqlite3
 
 from pyflock import FlockClient, Message
         
@@ -12,8 +13,6 @@ wsgiapp = app.wsgifunc()
 bot_token = '3eaf05be-7d37-4474-bdb5-a1b6f307ed73'
 app_id = 'ffc13fc5-ed85-4c04-b52c-d23fda856a3b'
 flock_client = FlockClient(token=bot_token, app_id=app_id)
-
-user_id = None
 
 class EventHandler:
 

@@ -1,8 +1,8 @@
 {
-  "name": "Python on Heroku example",
-  "description": "A barebones Python app, which can easily be deployed to Heroku.",
+  "name": "Project progress tracker",
+  "description": "A Flock bot to help teams keep track of their projects.",
   "image": "heroku/python",
-  "repository": "https://github.com/heroku/python-getting-started",
-  "keywords": ["python", "django" ],
+  "repository": "https://git.heroku.com/fierce-savannah-17069.git",
+  "keywords": ["python", "web.py" ],
   "addons": [ "heroku-postgresql" ]
 }
